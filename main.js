@@ -1,8 +1,6 @@
 import './style.css';
 
-import * as THREE from 'three';
-
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+//import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const scene = new THREE.Scene();
 
@@ -36,7 +34,7 @@ const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
 
 
-const controls = new OrbitControls(camera, renderer.domElement);
+//const controls = new OrbitControls(camera, renderer.domElement);
 
 const addStar = (flag) => {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -57,7 +55,7 @@ Array(500).fill().forEach(addStar);
 const spaceTexture = new THREE.TextureLoader().load('space.jpg');
 scene.background = spaceTexture;
 
-const myBox = new THREE.TextureLoader().load('me1.jpg');
+const myBox = new THREE.TextureLoader().load('https://silly-villani-dcd0b8.netlify.app/me1.jpg');
 
 const me = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3), 
@@ -74,8 +72,8 @@ me.rotation.y = -.4;
 
 scene.add(me);
 
-const moonTexture = new THREE.TextureLoader().load('moon.jpg');
-const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+const moonTexture = new THREE.TextureLoader().load('https://silly-villani-dcd0b8.netlify.app/moon.jpg');
+const normalTexture = new THREE.TextureLoader().load('https://silly-villani-dcd0b8.netlify.app/normal.jpg');
 
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(20, 32, 32), 
