@@ -19,14 +19,14 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(30);
+camera.position.z = 20;
 
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({ color: 0x00cc96 });
 const torus = new THREE.Mesh(geometry, material);
 
 
-torus.position.z = -20
+torus.position.z = 20
 scene.add(torus);
 
 const pointLight = new THREE.PointLight(0xffffff);
@@ -46,13 +46,13 @@ const addStar = (flag) => {
 
   const [x, y, z] = Array(3)
     .fill()
-    .map(() => THREE.MathUtils.randFloatSpread(100));
+    .map(() => THREE.MathUtils.randFloatSpread(200));
 
     star.position.set(x, y, z);
     scene.add(star);
 };
 
-Array(200).fill().forEach(addStar);
+Array(500).fill().forEach(addStar);
 
 const spaceTexture = new THREE.TextureLoader().load('space.jpg');
 scene.background = spaceTexture;
@@ -67,6 +67,10 @@ const me = new THREE.Mesh(
 me.position.x = 3; 
 me.position.z = 15; 
 me.position.y = 0; 
+me.rotation.z = -.3;
+me.rotation.y = -.4;
+
+
 
 scene.add(me);
 
@@ -74,43 +78,49 @@ const moonTexture = new THREE.TextureLoader().load('moon.jpg');
 const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
 const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32), 
+  new THREE.SphereGeometry(20, 32, 32), 
   new THREE.MeshStandardMaterial({map: moonTexture, normalMap: normalTexture})
 );
 scene.add(moon); 
-
-moon.position.z = -10;
+let moonRadians = 3; 
 moon.position.y = 10;
-moon.position.x = -30;
+
+moon.position.x = camera.position.x - Math.cos(moonRadians) * 150; 
+moon.position.z = -camera.position.z + Math.sin(moonRadians) * 150;
 
 
 const moveCamera = () => {
 
   const t = document.body.getBoundingClientRect().top;
-  moon.rotation.x += 0.05;
-  moon.rotation.y += 0.075;
-  moon.rotation.z += 0.05;
+  moon.rotation.x += 0.005;
+  moon.rotation.y += 0.0075;
+  moon.rotation.z += 0.005;
 
-  me.rotation.y += 0.075;
-  me.rotation.z += 0.05;
+  me.rotation.y +=  t * 0.000075;
+  me.rotation.z +=  t * 0.00005;
 
-  camera.position.z = 20 + t * -.001;
-  camera.position.x = t * -.0002; 
-  camera.rotation.y += 5 + t * -0.2;
-  camera.rotation.z += .01;
+  camera.position.z = 20 + t * -.01;
+  camera.position.x = t * .02; 
+  camera.rotation.y = t * 0.0007;
+  
 
 }
 
 document.body.onscroll = moveCamera; 
 
+
 const animate = () => {
   requestAnimationFrame(animate);
+
+  moonRadians += .004
+  moon.position.x = camera.position.x + Math.cos(moonRadians) * 150; 
+  moon.position.z = -camera.position.z + Math.sin(moonRadians) * 150;
 
   torus.rotation.x += 0.01;
   torus.rotation.y += 0.005;
   torus.rotation.z += 0.01;
 
-  controls.update();
+  //controls.update();
 
   renderer.render(scene, camera);
 };
