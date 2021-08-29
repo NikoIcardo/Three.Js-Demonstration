@@ -81,7 +81,7 @@ blockquote p {
   main {
     display: flex; 
     flex-wrap: wrap; 
-    align-items: center;
+    align-content: center;
   }
   header {
     font-size: 1.5rem;
@@ -90,7 +90,7 @@ blockquote p {
     justify-content: center;
   }
   section {
-    width: 100%; 
+    width: 80%; 
     flex-grow: 1; 
     justify-content: center;
   }
