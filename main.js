@@ -2,7 +2,7 @@ import './style.css';
 
 import * as THREE from '/node_modules/three/build/three.js';
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+//import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const scene = new THREE.Scene();
 
@@ -36,7 +36,7 @@ const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
 
 
-const controls = new OrbitControls(camera, renderer.domElement);
+//const controls = new OrbitControls(camera, renderer.domElement);
 
 const addStar = (flag) => {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
