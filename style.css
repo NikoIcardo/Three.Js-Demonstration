@@ -19,9 +19,8 @@ main {
   z-index: 99;
   position: absolute;
   width: 100%;
-  margin: 0px auto;
+  margin: 0px;
   padding: 120px 0px;
-
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }
@@ -56,6 +55,7 @@ section {
   font-size: 1.25rem;
   line-height: 1.5;
   margin-bottom: var(--spacing);
+  border-left: none;
 }
 
 blockquote {
@@ -63,6 +63,7 @@ blockquote {
   padding: 0;
   grid-column: 2 / span 9;
   margin-bottom: var(--spacing);
+  border-left: none;
 }
 
 blockquote p {
@@ -71,10 +72,7 @@ blockquote p {
   font-size: 4rem;
   display: inline;
   line-height: 1;
-}
-
-.left {
-  grid-column: 6 / 12;
+  border-left: none;
 }
 
 @media only screen and (max-width: 768px) {
@@ -84,14 +82,27 @@ blockquote p {
     align-content: center;
   }
   header {
+    grid-column: 1 / 8;
     font-size: 1.5rem;
+    flex-grow: 1; 
+    margin-left: 1rem;
+    margin-right: 1rem;
     width: 80%;
-    flex-grow: 1;
-    justify-content: center;
   }
   section {
+    grid-column: 1 / 8;
     width: 80%; 
     flex-grow: 1; 
+    margin-left: 1rem;
+    margin-right: 1rem;
     justify-content: center;
+  }
+  html {
+    margin: 0px; 
+    padding: 0px; 
+  }
+  body {
+    margin: 0px;
+    padding: 0px; 
   }
 } 
