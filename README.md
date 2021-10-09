@@ -1,5 +1,5 @@
-# Three.Js Tutorial
- Three.js Tutorial Website 
+# Three.Js Demonstration
+ Three.js Demonstration Website 
  
  The site is live here -> https://silly-villani-dcd0b8.netlify.app/
  
